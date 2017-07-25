@@ -1,5 +1,9 @@
 # Install
 
+## Prerequisites
+
+You need a working [Go](https://golang.org/doc/install) installation. You will have to set a GOPATH.
+
 ## How to build
 
 - Go to you $GOPATH
