@@ -1,0 +1,10 @@
+language: go
+
+go: 1.8
+
+os:
+  - linux
+
+install: true
+
+script: go build
