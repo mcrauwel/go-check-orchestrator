@@ -3,11 +3,11 @@ go: 1.8
 os:
 - linux
 install: go get
-script: go build
+script: go build && ls -l
 deploy:
   provider: releases
   api_key:
     secure: Um8CVbdEgEPhtkaA8+0S0hUb+Fdq6q1IGkrSnvlasm2QgHxlfty8E0Gz1TmD7EXm7zPlWhrgm0mDBvIWikkupX0tfggxoDoVDnKozLZABj1EInSrox04YB3SkNhEiBNEyH1M/p1+Ner2RVN3pV7lupAUcoSyfv4DJOzR0TZno+hm68B4nc3es2885/A5KA4qK5wpi9S08jMMM78mDIXxs4x3Hm0tyjO2gSt20mEUdPM5xNkUPtPiV/fnhXz7c9X4eJf2Nx62a5dQa/XZqhLUE/hjc2RzhvFPAo6HEzFdctG9a10Ixdahi684zCYzrU2YrI4900aRvo6CHn+t4JZPSHHecaDT1sQ1smyjlKxPD2p0omJR6ctMcpfYQSS/BqNw4l9wSCSpsbjOJ9j4Iua281YyhtHPgEkymbONifIRYQz0f2QAOlxh8rX8BixRBTDpAresrIZ3u2gO5F/Sk16cTJ92I3hlJ4k9rvKlzevipEBkaHP3setdYDaixP2qEAjeJmTJqwtlqKEO5AY5O7cdV0m82XQqThcHE+/RAgoSvZzugjsJlNTHPLHUVF0E0jNORULYFDNzU4uZcPmmEXsZjoHfW3a8SZKWK+E8Rgqib4XFYWk4jDvdo/ZAN44sCgQo53fGLEM/fsv/GhfhmrW8XY9H/CNVbqYXrSQpI0ozyjs=
-  file: go-check-orchestrator
+  file: check_orchestrator
   on:
     tags: true
