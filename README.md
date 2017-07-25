@@ -1,4 +1,6 @@
 # check_orchestrator
+[![Build Status](https://travis-ci.org/mcrauwel/go-check-orchestrator.svg?branch=master)](https://travis-ci.org/mcrauwel/go-check-orchestrator)
+
 This repository contains a Nagios / Icinga check to monitor [Orchestrator](https://github.com/github/orchestrator).
 
 This check was written by Matthias Crauwels <matthias.crauwels@UGent.be> at Ghent University. It is published with an [MIT license](LICENSE)
