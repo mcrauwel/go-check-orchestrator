@@ -5,6 +5,6 @@ go: 1.8
 os:
   - linux
 
-install: true
+install: go get
 
 script: go build
