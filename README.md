@@ -125,3 +125,39 @@ ORCHESTRATOR_CLUSTERHEALTH CRITICAL: In cluster 127.0.0.1:20192 host 127.0.0.1:2
 ```
 
 *note* the clusterhealth-command take the `downtime` setting in Orchestrator into account...
+
+## Nagios Installation
+
+### Configuration
+
+Assuming a standard installation of Nagios, the plugin can be executed from the machine that Nagios is running on.
+
+```
+cp check_orchestrator /usr/local/nagios/libexec/plugins/check_orchestrator
+chmod +x /usr/local/nagios/libexec/plugins/check_orchestrator
+```
+
+Add the following service definition to your server config:
+
+```
+define service {
+        use                             local-service
+        host_name                       localhost
+        service_description             <command_description>
+        check_command                   <command_name>
+        }
+```
+
+Add the following command definition to your commands config (commands.config):
+
+
+```
+define command{
+        command_name    <command_name>
+        command_line    /usr/local/nagios/libexec/plugins/check_orchestrator <command> <parameters>
+        }
+```
+
+More info about options in Commands.
+
+
