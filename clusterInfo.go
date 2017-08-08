@@ -47,7 +47,11 @@ func checkClusterInfo(args []string) *checkers.Checker {
 	body, err := ioutil.ReadAll(resp.Body)
 
 	var r []ClusterInfoResponse
-	json.Unmarshal(body, &r)
+	err = json.Unmarshal(body, &r)
+
+	if err != nil {
+		return checkers.NewChecker(checkers.UNKNOWN, fmt.Sprintf("Could read content for the Orchestrator API on %s\n%s", uri, err))
+	}
 
 	var aliases []string
 	for _, s := range r {
@@ -56,5 +60,9 @@ func checkClusterInfo(args []string) *checkers.Checker {
 		aliases = append(aliases, alias)
 	}
 
-	return checkers.NewChecker(checkers.OK, fmt.Sprintf("This instance manages following clusters: %s", strings.Join(aliases, ", ")))
+	if len(aliases) > 0 {
+		return checkers.NewChecker(checkers.OK, fmt.Sprintf("This instance manages following clusters:\n%s", strings.Join(aliases, "\n")))
+	}
+
+	return checkers.NewChecker(checkers.WARNING, "This Orchestrator is responding correctly but is not managing any clusters.")
 }

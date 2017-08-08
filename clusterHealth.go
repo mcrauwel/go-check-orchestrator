@@ -71,22 +71,12 @@ func checkClusterHealth(args []string) *checkers.Checker {
 	defer resp.Body.Close()
 	body, err := ioutil.ReadAll(resp.Body)
 
-	var status StatusResponse
-	err = json.Unmarshal(body, &status)
-
-	if err == nil {
-		msg := status.Message
-		checkSt := checkers.OK
-
-		if status.Code != "OK" {
-			checkSt = checkers.CRITICAL
-		}
-
-		return checkers.NewChecker(checkSt, msg)
-	}
-
 	var r []ClusterDetailResponse
-	json.Unmarshal(body, &r)
+	err = json.Unmarshal(body, &r)
+
+	if err != nil {
+		return checkers.NewChecker(checkers.UNKNOWN, fmt.Sprintf("Could read content for the Orchestrator API on %s\n%s", uri, err))
+	}
 
 	nrOfWriters := 0
 	for _, s := range r {
