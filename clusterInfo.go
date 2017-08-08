@@ -46,6 +46,22 @@ func checkClusterInfo(args []string) *checkers.Checker {
 	defer resp.Body.Close()
 	body, err := ioutil.ReadAll(resp.Body)
 
+	// check first if we might have gotten a StatusResponse instead of a ClusterInfoResponse
+	var status StatusResponse
+	err = json.Unmarshal(body, &status)
+
+	if err == nil {
+		msg := status.Message
+		checkSt := checkers.OK
+
+		if status.Code != "OK" {
+			checkSt = checkers.CRITICAL
+		}
+
+		return checkers.NewChecker(checkSt, msg)
+	}
+
+	// The response was not a StatusResponse, so try to process is as a ClusterInfoResponse
 	var r []ClusterInfoResponse
 	err = json.Unmarshal(body, &r)
 
