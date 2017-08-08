@@ -66,6 +66,12 @@ Help Options:
 $ bin/check_orchestrator clusterinfo
 ORCHESTRATOR_CLUSTERINFO OK: This instance manages following clusters: 127.0.0.1:20192 (HasAutomatedMasterRecovery = false) (HasAutomtedIntermediateMasterRecovery = false), localhost:20192 (HasAutomatedMasterRecovery = false) (HasAutomtedIntermediateMasterRecovery = false)
 ```
+#### Errors
+- Orchestrator has no clusters configured
+```
+ $ /tmp/check_orchestrator clusterinfo
+ORCHESTRATOR_CLUSTERINFO WARNING: This Orchestrator is responding correctly but is not managing any clusters.
+```
 
 ### clusterhealth
 #### Usage
