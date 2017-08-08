@@ -54,14 +54,17 @@ func checkClusterInfo(args []string) *checkers.Checker {
 	}
 
 	var aliases []string
+	var aliasdetails []string
 	for _, s := range r {
 		alias := fmt.Sprintf("%s (HasAutomatedMasterRecovery = %t) (HasAutomtedIntermediateMasterRecovery = %t)",
 			s.ClusterAlias, s.HasAutomatedMasterRecovery, s.HasAutomatedIntermediateMasterRecovery)
-		aliases = append(aliases, alias)
+
+		aliases = append(aliases, s.ClusterAlias)
+		aliasdetails = append(aliasdetails, alias)
 	}
 
 	if len(aliases) > 0 {
-		return checkers.NewChecker(checkers.OK, fmt.Sprintf("This instance manages following clusters:\n%s", strings.Join(aliases, "\n")))
+		return checkers.NewChecker(checkers.OK, fmt.Sprintf("This instance manages following clusters: %s\n%s", strings.Join(aliases, ", "), strings.Join(aliasdetails, "\n")))
 	}
 
 	return checkers.NewChecker(checkers.WARNING, "This Orchestrator is responding correctly but is not managing any clusters.")
