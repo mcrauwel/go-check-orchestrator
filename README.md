@@ -32,7 +32,7 @@ Application Options:
 Help Options:
 -h, --help Show this help message
 --http-auth-name Name for the http auth
---http-auth-pass Password for http auth  
+--http-auth-password Password for http auth  
 ```
 
 #### Success
