@@ -93,7 +93,7 @@ Application Options:
 -w, --lag-warning= Slave lag warning threshold (default: 300)
 -c, --lag-critical= Slave lag critical threshold (default: 600)
 --http-auth-name Name for the http auth 
--http-auth-password Password for http auth 
+--http-auth-password Password for http auth 
 Help Options:
 -h, --help Show this help message
 ```
