@@ -31,6 +31,8 @@ Application Options:
 -U, --uri= URI (default: api/health)
 Help Options:
 -h, --help Show this help message
+--http-auth-name Name for the http auth
+--http-auth-pass Password for http auth  
 ```
 
 #### Success

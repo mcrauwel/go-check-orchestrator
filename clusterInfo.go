@@ -36,10 +36,16 @@ func checkClusterInfo(args []string) *checkers.Checker {
 	if err != nil {
 		os.Exit(1)
 	}
-
 	uri := fmt.Sprintf("%s://%s:%s/%s", sslPrefix(opts.SSL), opts.Host, opts.Port, opts.URI)
 	client := &http.Client{Transport: getHttpTransport(opts.NoCert)}
-	resp, err := client.Get(uri)
+	req, err := http.NewRequest("GET", uri, nil)
+	if err != nil {
+		return checkers.NewChecker(checkers.UNKNOWN, fmt.Sprintf("Could not connect to Orchestrator API on %s", uri))
+	}
+	if opts.HttpAuthName != "" && opts.HttpAuthPass != ""  {
+		req.SetBasicAuth(opts.HttpAuthName, opts.HttpAuthPass)
+	}
+	resp, err := client.Do(req)
 	if err != nil {
 		return checkers.NewChecker(checkers.UNKNOWN, fmt.Sprintf("Could not connect to Orchestrator API on %s", uri))
 	}
