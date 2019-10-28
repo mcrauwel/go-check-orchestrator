@@ -28,8 +28,8 @@ type orchestratorOpts struct {
 	Port   string `short:"p" long:"port" default:"3000" description:"Port"`
 	SSL    bool   `short:"S" long:"ssl" description:"Use SSL"`
 	NoCert bool   `short:"I" long:"insecure" description:"Do not check SSL cert"`
-	HttpAuthName string   `long:"http-auth-name" description:"Http authorization name"`
-	HttpAuthPass string   `long:"http-auth-password" description:"Http authorization password"`
+	HttpAuthName string   `short:"u" long:"http-auth-name" description:"Http authorization name"`
+	HttpAuthPass string   `short:"p" long:"http-auth-password" description:"Http authorization password"`
 }
 
 func separateSub(argv []string) (string, []string) {
