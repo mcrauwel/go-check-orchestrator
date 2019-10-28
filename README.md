@@ -29,10 +29,10 @@ Application Options:
 -S, --ssl Use SSL
 -I, --insecure Do not check SSL cert
 -U, --uri= URI (default: api/health)
+-u, --http-auth-name Name for the http auth 
+-p, --http-auth-password Password for http auth  
 Help Options:
 -h, --help Show this help message
---http-auth-name Name for the http auth
---http-auth-password Password for http auth  
 ```
 
 #### Success
@@ -59,6 +59,8 @@ Application Options:
 -S, --ssl Use SSL
 -I, --insecure Do not check SSL cert
 -U, --uri= URI (default: api/clusters-info)
+-u, --http-auth-name Name for the http auth 
+-p, --http-auth-password Password for http auth 
 Help Options:
 -h, --help Show this help message
 ```
@@ -90,6 +92,8 @@ Application Options:
 -t, --timeout= Timeout for SecondsSinceLastSeen (default: 300)
 -w, --lag-warning= Slave lag warning threshold (default: 300)
 -c, --lag-critical= Slave lag critical threshold (default: 600)
+-u, --http-auth-name Name for the http auth 
+-p, --http-auth-password Password for http auth 
 Help Options:
 -h, --help Show this help message
 ```
