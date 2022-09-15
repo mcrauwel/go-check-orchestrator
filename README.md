@@ -1,7 +1,7 @@
 # check_orchestrator
-[![Build Status](https://travis-ci.org/mcrauwel/go-check-orchestrator.svg?branch=master)](https://travis-ci.org/mcrauwel/go-check-orchestrator)
+[![Go](https://github.com/mcrauwel/go-check-orchestrator/actions/workflows/go.yml/badge.svg)](https://github.com/mcrauwel/go-check-orchestrator/actions/workflows/go.yml)
 
-This repository contains a Nagios / Icinga check to monitor [Orchestrator](https://github.com/github/orchestrator).
+This repository contains a Nagios / Icinga check to monitor [Orchestrator](https://github.com/openark/orchestrator).
 
 This check was written by Matthias Crauwels <matthias.crauwels@UGent.be> at Ghent University. It is published with an [MIT license](LICENSE)
 
@@ -165,5 +165,3 @@ define command{
 ```
 
 More info about options in Commands.
-
-
