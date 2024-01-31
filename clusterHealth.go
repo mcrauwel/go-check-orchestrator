@@ -44,7 +44,8 @@ type JsonInt64 struct {
 }
 
 type clusterHealtOpts struct {
-	ClusterAlias string `required:"true" short:"a" long:"alias" description:"ClusterAlias"`
+	ClusterAlias      string `required:"true" short:"a" long:"alias" description:"ClusterAlias"`
+	ClusterNodesCount int    `short:"n" long:"nodes" default:"0" description:"Number of nodes in cluster"`
 	orchestratorOpts
 	SecondsSinceLastSeenThreshold int64 `short:"t" long:"timeout" default:"300" description:"Timeout for SecondsSinceLastSeen"`
 	SlaveLagWarningThreshold      int64 `short:"w" long:"lag-warning" default:"300" description:"Slave lag warning threshold"`
@@ -95,10 +96,16 @@ func checkClusterHealth(args []string) *checkers.Checker {
 	}
 
 	nrOfWriters := 0
+	nrOfNodes := len(r)
 	for _, s := range r {
 		if !s.ReadOnly {
 			nrOfWriters++
 		}
+	}
+
+	if opts.ClusterNodesCount != 0 && nrOfNodes != opts.ClusterNodesCount {
+		return checkers.NewChecker(checkers.CRITICAL,
+			fmt.Sprintf("[NODE COUNT] There are %d nodes in cluster %s, but %d expected", nrOfNodes, clusterAlias, opts.ClusterNodesCount))
 	}
 
 	if nrOfWriters > 1 {
